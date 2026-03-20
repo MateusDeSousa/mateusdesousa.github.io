@@ -21,13 +21,16 @@
         <span class="logo-bracket">&lt;</span>codando na rede<span class="logo-bracket">/&gt;</span>
       </a>
       <div class="nav-links" id="navLinks">
-        <a href="#sobre">Sobre</a>
+        <a href="#sobre"      data-i18n="nav.about">Sobre</a>
         <a href="#skills">Skills</a>
-        <a href="#experiencia">Experiência</a>
-        <a href="#artigos">Artigos</a>
-        <a href="mailto:mateusdevsousa@gmail.com" class="nav-cta">Contato</a>
+        <a href="#experiencia" data-i18n="nav.experience">Experiência</a>
+        <a href="#artigos"    data-i18n="nav.articles">Artigos</a>
+        <a href="mailto:mateusdevsousa@gmail.com" class="nav-cta" data-i18n="nav.contact">Contato</a>
       </div>
       <div class="nav-right">
+        <button class="lang-toggle" id="langToggle" aria-label="Switch language">
+          <span class="lang-label" id="langLabel">EN</span>
+        </button>
         <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
           <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
             <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
@@ -58,23 +61,23 @@
         <div class="hero-text">
           <div class="hero-badge">
             <span class="badge-dot"></span>
-            Disponível para colaborações
+            <span data-i18n="hero.badge">Disponível para colaborações</span>
           </div>
           <h1 class="hero-title">
-            Olá, eu sou<br>
+            <span data-i18n="hero.greeting">Olá, eu sou</span><br>
             <span class="gradient-text">Mateus Sousa</span>
           </h1>
           <p class="hero-subtitle">
             <span class="mono-prefix">~/</span> iOS Software Engineer
           </p>
-          <p class="hero-description">
+          <p class="hero-description" data-i18n-html="hero.description">
             Engenheiro de software especializado em iOS com <strong>8+ anos de experiência</strong>.
             Apaixonado por performance mobile, arquitetura escalável e por compartilhar
             conhecimento com a comunidade tech brasileira.
           </p>
           <div class="hero-actions">
-            <a href="#artigos" class="btn btn-primary">Ver Artigos</a>
-            <a href="#sobre" class="btn btn-outline">Sobre mim</a>
+            <a href="#artigos" class="btn btn-primary" data-i18n="hero.cta.articles">Ver Artigos</a>
+            <a href="#sobre"   class="btn btn-outline"  data-i18n="hero.cta.about">Sobre mim</a>
           </div>
           <div class="hero-socials">
             <a href="https://github.com/MateusDeSousa" target="_blank" rel="noopener" class="social-link" aria-label="GitHub">
@@ -98,15 +101,15 @@
           <div class="hero-stats">
             <div class="stat">
               <span class="stat-number">8+</span>
-              <span class="stat-label">Anos de exp.</span>
+              <span class="stat-label" data-i18n="hero.stats.years">Anos de exp.</span>
             </div>
             <div class="stat">
               <span class="stat-number">20+</span>
-              <span class="stat-label">Apps entregues</span>
+              <span class="stat-label" data-i18n="hero.stats.apps">Apps entregues</span>
             </div>
             <div class="stat">
               <span class="stat-number">5</span>
-              <span class="stat-label">Empresas</span>
+              <span class="stat-label" data-i18n="hero.stats.companies">Empresas</span>
             </div>
           </div>
         </div>
@@ -118,29 +121,29 @@
   <section class="section" id="sobre">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">// sobre mim</span>
-        <h2 class="section-title">Quem sou eu</h2>
+        <span class="section-tag" data-i18n="about.tag">// sobre mim</span>
+        <h2 class="section-title" data-i18n="about.title">Quem sou eu</h2>
       </div>
       <div class="about-content">
         <div class="about-text">
-          <p>
+          <p data-i18n-html="about.p1">
             Sou um engenheiro de software especializado em iOS com mais de <strong>8 anos de experiência</strong>
             em desenvolvimento mobile. Ao longo da minha carreira, participei da criação de produtos
             financeiros de alto impacto e aplicativos utilitários com milhões de usuários.
           </p>
-          <p>
+          <p data-i18n-html="about.p2">
             Atualmente no <strong>Mercado Livre</strong>, atuo em iniciativas de performance que impactam
             diretamente a experiência de milhões de usuários — focando em métricas como AppSize, StartupTime,
             RenderTime e MemoryUse, criando ferramentas de monitoramento e implementando melhorias em áreas críticas.
           </p>
-          <p>
+          <p data-i18n-html="about.p3">
             Tenho paixão por arquitetura de software limpa, performance mobile e por <strong>compartilhar
             conhecimento</strong> com a comunidade de desenvolvedores. Esse blog nasceu exatamente dessa
             vontade: documentar aprendizados, trocar experiências e contribuir com o ecossistema tech brasileiro.
           </p>
           <div class="about-tags">
             <span class="tag">📍 Fortaleza, CE</span>
-            <span class="tag">🎓 Pós-graduado em AI/ML</span>
+            <span class="tag" data-i18n="about.tag.degree">🎓 Pós-graduado em AI/ML</span>
             <span class="tag">🍎 iOS Specialist</span>
             <span class="tag">🚀 Senior Engineer</span>
             <span class="tag">🌎 EN · PT · ES</span>
@@ -157,13 +160,13 @@
           <div class="terminal-body">
 <pre><code><span class="code-keyword">struct</span> <span class="code-type">Mateus</span> {
   <span class="code-keyword">let</span> role    = <span class="code-string">"iOS Engineer"</span>
-  <span class="code-keyword">let</span> xp      = <span class="code-number">8</span> <span class="code-comment">// anos</span>
+  <span class="code-keyword">let</span> xp      = <span class="code-number">8</span> <span class="code-comment" data-i18n="terminal.years">// anos</span>
   <span class="code-keyword">let</span> company = <span class="code-string">"Mercado Livre"</span>
   <span class="code-keyword">let</span> city    = <span class="code-string">"Fortaleza 🌴"</span>
 
   <span class="code-keyword">var</span> focus: [<span class="code-type">String</span>] {
     [<span class="code-string">"Performance"</span>,
-     <span class="code-string">"Arquitetura"</span>,
+     <span class="code-string" data-i18n="terminal.architecture">"Arquitetura"</span>,
      <span class="code-string">"Open Source"</span>]
   }
 
@@ -182,7 +185,7 @@
     <div class="container">
       <div class="section-header">
         <span class="section-tag">// skills</span>
-        <h2 class="section-title">Tecnologias & Ferramentas</h2>
+        <h2 class="section-title" data-i18n="skills.title">Tecnologias & Ferramentas</h2>
       </div>
       <div class="skills-grid">
 
@@ -213,7 +216,7 @@
         </div>
 
         <div class="skill-category">
-          <h3 class="category-title">Arquitetura & Qualidade</h3>
+          <h3 class="category-title" data-i18n="skills.cat.arch">Arquitetura & Qualidade</h3>
           <div class="skill-items">
             <div class="skill-item">
               <span class="skill-icon">🏗️</span>
@@ -227,12 +230,12 @@
             </div>
             <div class="skill-item">
               <span class="skill-icon">⚡</span>
-              <span class="skill-name">Performance Tuning</span>
+              <span class="skill-name" data-i18n="skills.perf">Performance Tuning</span>
               <div class="skill-bar"><div class="skill-progress" data-w="93"></div></div>
             </div>
             <div class="skill-item">
               <span class="skill-icon">🔒</span>
-              <span class="skill-name">App Security</span>
+              <span class="skill-name" data-i18n="skills.security">App Security</span>
               <div class="skill-bar"><div class="skill-progress" data-w="82"></div></div>
             </div>
           </div>
@@ -272,24 +275,22 @@
   <section class="section" id="experiencia">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">// experiência</span>
-        <h2 class="section-title">Trajetória Profissional</h2>
+        <span class="section-tag" data-i18n="exp.tag">// experiência</span>
+        <h2 class="section-title" data-i18n="exp.title">Trajetória Profissional</h2>
       </div>
       <div class="timeline">
 
         <div class="timeline-item reveal">
-          <div class="timeline-marker">
-            <div class="marker-dot current"></div>
-          </div>
+          <div class="timeline-marker"><div class="marker-dot current"></div></div>
           <div class="timeline-card">
             <div class="card-header">
               <div>
                 <h3 class="card-company">Mercado Livre</h3>
                 <p class="card-role">Senior Software Engineer</p>
               </div>
-              <span class="card-period">Ago 2023 – Presente</span>
+              <span class="card-period" data-i18n="exp.ml.period">Ago 2023 – Presente</span>
             </div>
-            <p class="card-description">
+            <p class="card-description" data-i18n="exp.ml.desc">
               Atuação na equipe de plataforma mobile com foco em performance e observabilidade.
               Principais responsabilidades: melhorias em AppSize, StartupTime, RenderTime e MemoryUse,
               criação de ferramentas de monitoramento e implementação de melhorias em áreas críticas
@@ -305,9 +306,7 @@
         </div>
 
         <div class="timeline-item reveal">
-          <div class="timeline-marker">
-            <div class="marker-dot"></div>
-          </div>
+          <div class="timeline-marker"><div class="marker-dot"></div></div>
           <div class="timeline-card">
             <div class="card-header">
               <div>
@@ -316,7 +315,7 @@
               </div>
               <span class="card-period">Jun 2021 – Ago 2023 · 2a 3m</span>
             </div>
-            <p class="card-description">
+            <p class="card-description" data-i18n="exp.picpay.desc">
               Parte da equipe de Mobile Platform com foco em Developer Experience, Build Time e
               Startup Time para apps iOS. Criação de guardrails (validações de segurança, cobertura
               de testes, ausência de bugs em novos PRs). Participação ativa em decisões de arquitetura
@@ -325,17 +324,15 @@
             <div class="card-tags">
               <span class="tech-tag">Swift</span>
               <span class="tech-tag">Developer Experience</span>
-              <span class="tech-tag">Segurança</span>
-              <span class="tech-tag">Arquitetura</span>
-              <span class="tech-tag">Mentoria</span>
+              <span class="tech-tag" data-i18n="tag.security">Segurança</span>
+              <span class="tech-tag" data-i18n="tag.arch">Arquitetura</span>
+              <span class="tech-tag" data-i18n="tag.mentoring">Mentoria</span>
             </div>
           </div>
         </div>
 
         <div class="timeline-item reveal">
-          <div class="timeline-marker">
-            <div class="marker-dot"></div>
-          </div>
+          <div class="timeline-marker"><div class="marker-dot"></div></div>
           <div class="timeline-card">
             <div class="card-header">
               <div>
@@ -344,7 +341,7 @@
               </div>
               <span class="card-period">Dez 2020 – Jun 2021 · 7m</span>
             </div>
-            <p class="card-description">
+            <p class="card-description" data-i18n="exp.dbc.desc">
               Alocado na Getnet (Santander), responsável pela implementação de novas funcionalidades
               e melhoria da arquitetura e componentes do aplicativo Getnet, disponível na App Store com
               milhares de usuários.
@@ -358,9 +355,7 @@
         </div>
 
         <div class="timeline-item reveal">
-          <div class="timeline-marker">
-            <div class="marker-dot"></div>
-          </div>
+          <div class="timeline-marker"><div class="marker-dot"></div></div>
           <div class="timeline-card">
             <div class="card-header">
               <div>
@@ -369,7 +364,7 @@
               </div>
               <span class="card-period">Jun 2019 – Dez 2020 · 1a 7m</span>
             </div>
-            <p class="card-description">
+            <p class="card-description" data-i18n="exp.mobills.desc">
               Desenvolvimento de múltiplos aplicativos do zero, assumindo a liderança técnica do projeto
               MobillsEdu. Ao todo, mais de 8 apps publicados na App Store — de controle financeiro a
               utilidades — com dezenas de milhares de usuários ativos.
@@ -384,18 +379,16 @@
         </div>
 
         <div class="timeline-item reveal">
-          <div class="timeline-marker">
-            <div class="marker-dot"></div>
-          </div>
+          <div class="timeline-marker"><div class="marker-dot"></div></div>
           <div class="timeline-card">
             <div class="card-header">
               <div>
                 <h3 class="card-company">Grupo Gagliardi</h3>
-                <p class="card-role">IT Intern → IT Assistant</p>
+                <p class="card-role" data-i18n="exp.gagliardi.role">IT Intern → IT Assistant</p>
               </div>
               <span class="card-period">Jul 2016 – Mai 2019 · 2a 11m</span>
             </div>
-            <p class="card-description">
+            <p class="card-description" data-i18n="exp.gagliardi.desc">
               Início da carreira em TI: suporte, manutenção de servidores Linux, sistemas de tickets (OTRS),
               desenvolvimento de features para intranet e integração de redes entre filiais. Base sólida
               para a transição para o desenvolvimento de software.
@@ -416,9 +409,9 @@
   <section class="section section-alt" id="artigos">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">// artigos</span>
-        <h2 class="section-title">Últimos Artigos</h2>
-        <p class="section-subtitle">
+        <span class="section-tag" data-i18n="articles.tag">// artigos</span>
+        <h2 class="section-title" data-i18n="articles.title">Últimos Artigos</h2>
+        <p class="section-subtitle" data-i18n="articles.subtitle">
           Conteúdo sobre Swift, performance mobile, arquitetura e o dia a dia de um engenheiro iOS.
         </p>
       </div>
@@ -428,16 +421,16 @@
           <div class="article-content">
             <div class="article-meta">
               <span class="article-category">Performance</span>
-              <span class="article-date">Em breve</span>
+              <span class="article-date" data-i18n="articles.soon">Em breve</span>
             </div>
-            <h3 class="article-title">Como reduzimos o StartupTime em apps de grande escala</h3>
-            <p class="article-excerpt">
+            <h3 class="article-title" data-i18n="articles.a1.title">Como reduzimos o StartupTime em apps de grande escala</h3>
+            <p class="article-excerpt" data-i18n="articles.a1.excerpt">
               Um mergulho profundo nas técnicas e ferramentas que utilizamos para otimizar o tempo de
               inicialização de apps com milhões de usuários — do diagnóstico com Instruments à entrega em produção.
             </p>
             <div class="article-footer">
-              <span class="article-read-time">⏱ 8 min de leitura</span>
-              <span class="article-badge coming-soon">Em breve</span>
+              <span class="article-read-time" data-i18n="articles.a1.time">⏱ 8 min de leitura</span>
+              <span class="article-badge coming-soon" data-i18n="articles.soon">Em breve</span>
             </div>
           </div>
         </article>
@@ -445,17 +438,17 @@
         <article class="article-card reveal">
           <div class="article-content">
             <div class="article-meta">
-              <span class="article-category">Arquitetura</span>
-              <span class="article-date">Em breve</span>
+              <span class="article-category" data-i18n="articles.cat.arch">Arquitetura</span>
+              <span class="article-date" data-i18n="articles.soon">Em breve</span>
             </div>
-            <h3 class="article-title">Clean Architecture em iOS: do conceito à prática</h3>
-            <p class="article-excerpt">
+            <h3 class="article-title" data-i18n="articles.a2.title">Clean Architecture em iOS: do conceito à prática</h3>
+            <p class="article-excerpt" data-i18n="articles.a2.excerpt">
               Como aplicar os princípios da Clean Architecture em projetos iOS reais,
               com exemplos práticos em Swift e casos do mundo real.
             </p>
             <div class="article-footer">
-              <span class="article-read-time">⏱ 10 min de leitura</span>
-              <span class="article-badge coming-soon">Em breve</span>
+              <span class="article-read-time" data-i18n="articles.a2.time">⏱ 10 min de leitura</span>
+              <span class="article-badge coming-soon" data-i18n="articles.soon">Em breve</span>
             </div>
           </div>
         </article>
@@ -464,16 +457,16 @@
           <div class="article-content">
             <div class="article-meta">
               <span class="article-category">Swift</span>
-              <span class="article-date">Em breve</span>
+              <span class="article-date" data-i18n="articles.soon">Em breve</span>
             </div>
-            <h3 class="article-title">Concorrência em Swift: async/await e atores na prática</h3>
-            <p class="article-excerpt">
+            <h3 class="article-title" data-i18n="articles.a3.title">Concorrência em Swift: async/await e atores na prática</h3>
+            <p class="article-excerpt" data-i18n="articles.a3.excerpt">
               Entenda o modelo de concorrência moderno do Swift e como ele resolve
               os problemas clássicos de thread safety de forma elegante e segura.
             </p>
             <div class="article-footer">
-              <span class="article-read-time">⏱ 12 min de leitura</span>
-              <span class="article-badge coming-soon">Em breve</span>
+              <span class="article-read-time" data-i18n="articles.a3.time">⏱ 12 min de leitura</span>
+              <span class="article-badge coming-soon" data-i18n="articles.soon">Em breve</span>
             </div>
           </div>
         </article>
@@ -489,34 +482,193 @@
         <a href="#" class="footer-logo">
           <span class="logo-bracket">&lt;</span>codando na rede<span class="logo-bracket">/&gt;</span>
         </a>
-        <p class="footer-tagline">Compartilhando conhecimento, um commit de cada vez.</p>
+        <p class="footer-tagline" data-i18n="footer.tagline">Compartilhando conhecimento, um commit de cada vez.</p>
         <div class="footer-socials">
           <a href="https://github.com/MateusDeSousa" target="_blank" rel="noopener">GitHub</a>
           <a href="https://www.linkedin.com/in/mateusdesousa" target="_blank" rel="noopener">LinkedIn</a>
           <a href="mailto:mateusdevsousa@gmail.com">Email</a>
         </div>
-        <p class="footer-copy">© 2026 Mateus Sousa · Feito com ❤️ e Swift</p>
+        <p class="footer-copy" data-i18n="footer.copy">© 2026 Mateus Sousa · Feito com ❤️ e Swift</p>
       </div>
     </div>
   </footer>
 
   <script>
-    // Nav scroll effect
+    // ===== TRANSLATIONS =====
+    const translations = {
+      pt: {
+        'nav.about':        'Sobre',
+        'nav.experience':   'Experiência',
+        'nav.articles':     'Artigos',
+        'nav.contact':      'Contato',
+
+        'hero.badge':       'Disponível para colaborações',
+        'hero.greeting':    'Olá, eu sou',
+        'hero.description': 'Engenheiro de software especializado em iOS com <strong>8+ anos de experiência</strong>. Apaixonado por performance mobile, arquitetura escalável e por compartilhar conhecimento com a comunidade tech brasileira.',
+        'hero.cta.articles':'Ver Artigos',
+        'hero.cta.about':   'Sobre mim',
+        'hero.stats.years': 'Anos de exp.',
+        'hero.stats.apps':  'Apps entregues',
+        'hero.stats.companies': 'Empresas',
+
+        'about.tag':        '// sobre mim',
+        'about.title':      'Quem sou eu',
+        'about.p1':         'Sou um engenheiro de software especializado em iOS com mais de <strong>8 anos de experiência</strong> em desenvolvimento mobile. Ao longo da minha carreira, participei da criação de produtos financeiros de alto impacto e aplicativos utilitários com milhões de usuários.',
+        'about.p2':         'Atualmente no <strong>Mercado Livre</strong>, atuo em iniciativas de performance que impactam diretamente a experiência de milhões de usuários — focando em métricas como AppSize, StartupTime, RenderTime e MemoryUse, criando ferramentas de monitoramento e implementando melhorias em áreas críticas.',
+        'about.p3':         'Tenho paixão por arquitetura de software limpa, performance mobile e por <strong>compartilhar conhecimento</strong> com a comunidade de desenvolvedores. Esse blog nasceu exatamente dessa vontade: documentar aprendizados, trocar experiências e contribuir com o ecossistema tech brasileiro.',
+        'about.tag.degree': '🎓 Pós-graduado em AI/ML',
+
+        'terminal.years':        '// anos',
+        'terminal.architecture': '"Arquitetura"',
+
+        'skills.title':    'Tecnologias & Ferramentas',
+        'skills.cat.arch': 'Arquitetura & Qualidade',
+        'skills.perf':     'Performance Tuning',
+        'skills.security': 'App Security',
+
+        'exp.tag':   '// experiência',
+        'exp.title': 'Trajetória Profissional',
+        'exp.ml.period': 'Ago 2023 – Presente',
+        'exp.ml.desc':   'Atuação na equipe de plataforma mobile com foco em performance e observabilidade. Principais responsabilidades: melhorias em AppSize, StartupTime, RenderTime e MemoryUse, criação de ferramentas de monitoramento e implementação de melhorias em áreas críticas que impactam milhões de usuários.',
+        'exp.picpay.desc': 'Parte da equipe de Mobile Platform com foco em Developer Experience, Build Time e Startup Time para apps iOS. Criação de guardrails (validações de segurança, cobertura de testes, ausência de bugs em novos PRs). Participação ativa em decisões de arquitetura e mentoria de engenheiros.',
+        'exp.dbc.desc':    'Alocado na Getnet (Santander), responsável pela implementação de novas funcionalidades e melhoria da arquitetura e componentes do aplicativo Getnet, disponível na App Store com milhares de usuários.',
+        'exp.mobills.desc':'Desenvolvimento de múltiplos aplicativos do zero, assumindo a liderança técnica do projeto MobillsEdu. Ao todo, mais de 8 apps publicados na App Store — de controle financeiro a utilidades — com dezenas de milhares de usuários ativos.',
+        'exp.gagliardi.role': 'IT Intern → IT Assistant',
+        'exp.gagliardi.desc': 'Início da carreira em TI: suporte, manutenção de servidores Linux, sistemas de tickets (OTRS), desenvolvimento de features para intranet e integração de redes entre filiais. Base sólida para a transição para o desenvolvimento de software.',
+
+        'tag.security':  'Segurança',
+        'tag.arch':      'Arquitetura',
+        'tag.mentoring': 'Mentoria',
+
+        'articles.tag':      '// artigos',
+        'articles.title':    'Últimos Artigos',
+        'articles.subtitle': 'Conteúdo sobre Swift, performance mobile, arquitetura e o dia a dia de um engenheiro iOS.',
+        'articles.soon':     'Em breve',
+        'articles.cat.arch': 'Arquitetura',
+        'articles.a1.title': 'Como reduzimos o StartupTime em apps de grande escala',
+        'articles.a1.excerpt':'Um mergulho profundo nas técnicas e ferramentas que utilizamos para otimizar o tempo de inicialização de apps com milhões de usuários — do diagnóstico com Instruments à entrega em produção.',
+        'articles.a1.time':  '⏱ 8 min de leitura',
+        'articles.a2.title': 'Clean Architecture em iOS: do conceito à prática',
+        'articles.a2.excerpt':'Como aplicar os princípios da Clean Architecture em projetos iOS reais, com exemplos práticos em Swift e casos do mundo real.',
+        'articles.a2.time':  '⏱ 10 min de leitura',
+        'articles.a3.title': 'Concorrência em Swift: async/await e atores na prática',
+        'articles.a3.excerpt':'Entenda o modelo de concorrência moderno do Swift e como ele resolve os problemas clássicos de thread safety de forma elegante e segura.',
+        'articles.a3.time':  '⏱ 12 min de leitura',
+
+        'footer.tagline': 'Compartilhando conhecimento, um commit de cada vez.',
+        'footer.copy':    '© 2026 Mateus Sousa · Feito com ❤️ e Swift',
+      },
+
+      en: {
+        'nav.about':        'About',
+        'nav.experience':   'Experience',
+        'nav.articles':     'Articles',
+        'nav.contact':      'Contact',
+
+        'hero.badge':       'Available for collaborations',
+        'hero.greeting':    "Hi, I'm",
+        'hero.description': 'iOS software engineer with <strong>8+ years of experience</strong> in mobile development. Passionate about mobile performance, scalable architecture, and sharing knowledge with the tech community.',
+        'hero.cta.articles':'See Articles',
+        'hero.cta.about':   'About me',
+        'hero.stats.years': 'Years of exp.',
+        'hero.stats.apps':  'Apps delivered',
+        'hero.stats.companies': 'Companies',
+
+        'about.tag':        '// about me',
+        'about.title':      'Who I am',
+        'about.p1':         'I am a software engineer specializing in iOS with over <strong>8 years of experience</strong> in mobile development. Throughout my career, I have been involved in building high-impact financial products and utility apps with millions of users.',
+        'about.p2':         'Currently at <strong>Mercado Livre</strong>, I work on performance initiatives that directly impact the experience of millions of users — focusing on metrics like AppSize, StartupTime, RenderTime and MemoryUse, building monitoring tools and implementing improvements in critical areas.',
+        'about.p3':         'I am passionate about clean software architecture, mobile performance, and <strong>sharing knowledge</strong> with the developer community. This blog was born from that desire: to document learnings, exchange experiences, and contribute to the tech ecosystem.',
+        'about.tag.degree': '🎓 Postgraduate in AI/ML',
+
+        'terminal.years':        '// years',
+        'terminal.architecture': '"Architecture"',
+
+        'skills.title':    'Technologies & Tools',
+        'skills.cat.arch': 'Architecture & Quality',
+        'skills.perf':     'Performance Tuning',
+        'skills.security': 'App Security',
+
+        'exp.tag':   '// experience',
+        'exp.title': 'Professional Journey',
+        'exp.ml.period': 'Aug 2023 – Present',
+        'exp.ml.desc':   'Working on the mobile platform team focused on performance and observability. Main responsibilities: improvements in AppSize, StartupTime, RenderTime and MemoryUse, creating monitoring tools and implementing enhancements in critical areas impacting millions of users.',
+        'exp.picpay.desc': 'Part of the Mobile Platform team focused on Developer Experience, Build Time and Startup Time for iOS apps. Building guardrails (security validations, test coverage, absence of bugs in new PRs). Active participation in architecture decisions and engineering mentorship.',
+        'exp.dbc.desc':    'Allocated at Getnet (Santander), responsible for implementing new features and improving the architecture and components of the Getnet app, available on the App Store with thousands of users.',
+        'exp.mobills.desc':'Built multiple applications from scratch, taking on the technical leadership of the MobillsEdu project. In total, over 8 apps published on the App Store — from financial management to utilities — with tens of thousands of active users.',
+        'exp.gagliardi.role': 'IT Intern → IT Assistant',
+        'exp.gagliardi.desc': 'Start of IT career: support, Linux server maintenance, ticket systems (OTRS), intranet feature development, and network integration between branches. Strong foundation for transitioning into software development.',
+
+        'tag.security':  'Security',
+        'tag.arch':      'Architecture',
+        'tag.mentoring': 'Mentoring',
+
+        'articles.tag':      '// articles',
+        'articles.title':    'Latest Articles',
+        'articles.subtitle': 'Content about Swift, mobile performance, architecture and the day-to-day life of an iOS engineer.',
+        'articles.soon':     'Coming soon',
+        'articles.cat.arch': 'Architecture',
+        'articles.a1.title': 'How we reduced StartupTime in large-scale apps',
+        'articles.a1.excerpt':'A deep dive into the techniques and tools we used to optimize the startup time of apps with millions of users — from diagnostics with Instruments to production delivery.',
+        'articles.a1.time':  '⏱ 8 min read',
+        'articles.a2.title': 'Clean Architecture in iOS: from concept to practice',
+        'articles.a2.excerpt':'How to apply Clean Architecture principles in real iOS projects, with practical Swift examples and real-world cases.',
+        'articles.a2.time':  '⏱ 10 min read',
+        'articles.a3.title': 'Concurrency in Swift: async/await and actors in practice',
+        'articles.a3.excerpt':'Understand Swift\'s modern concurrency model and how it solves classic thread safety problems in an elegant and safe way.',
+        'articles.a3.time':  '⏱ 12 min read',
+
+        'footer.tagline': 'Sharing knowledge, one commit at a time.',
+        'footer.copy':    '© 2026 Mateus Sousa · Made with ❤️ and Swift',
+      }
+    };
+
+    // ===== LANGUAGE SYSTEM =====
+    let currentLang = localStorage.getItem('lang') || 'pt';
+
+    function applyLang(lang) {
+      const t = translations[lang];
+      document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (t[key] !== undefined) el.textContent = t[key];
+      });
+
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.dataset.i18nHtml;
+        if (t[key] !== undefined) el.innerHTML = t[key];
+      });
+
+      // Update toggle label to show the OTHER language (what you'll switch to)
+      document.getElementById('langLabel').textContent = lang === 'pt' ? 'EN' : 'PT';
+      currentLang = lang;
+    }
+
+    // Apply saved or default language on load
+    applyLang(currentLang);
+
+    document.getElementById('langToggle').addEventListener('click', () => {
+      const next = currentLang === 'pt' ? 'en' : 'pt';
+      localStorage.setItem('lang', next);
+      applyLang(next);
+    });
+
+    // ===== NAV SCROLL =====
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 50);
     });
 
-    // Mobile nav toggle
+    // ===== MOBILE NAV =====
     document.getElementById('navToggle').addEventListener('click', () => {
       document.getElementById('navLinks').classList.toggle('open');
     });
 
-    // Theme toggle
+    // ===== THEME TOGGLE =====
     const html = document.documentElement;
     const themeToggle = document.getElementById('themeToggle');
-    const saved = localStorage.getItem('theme');
-    if (saved === 'light') html.setAttribute('data-theme', 'light');
+    if (localStorage.getItem('theme') === 'light') html.setAttribute('data-theme', 'light');
 
     themeToggle.addEventListener('click', () => {
       const isLight = html.getAttribute('data-theme') === 'light';
@@ -524,12 +676,11 @@
       localStorage.setItem('theme', isLight ? 'dark' : 'light');
     });
 
-    // Intersection Observer for animations
+    // ===== SCROLL ANIMATIONS =====
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
         const el = entry.target;
-
         if (el.classList.contains('skill-progress')) {
           el.style.width = el.dataset.w + '%';
         } else {
