@@ -745,16 +745,15 @@ body {
 
 /* Company badge */
 .company-badge {
-  width: 46px;
-  height: 46px;
-  border-radius: 12px;
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   text-decoration: none;
-  border: 1px solid var(--border);
   transition: transform var(--transition), box-shadow var(--transition);
   position: relative;
 }
