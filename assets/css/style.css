@@ -550,7 +550,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 64px;
-  align-items: center;
+  align-items: start;
 }
 .about-text p {
   color: var(--text-sec);
