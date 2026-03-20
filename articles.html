@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Artigos de Mateus Sousa sobre Swift, performance mobile, arquitetura iOS e desenvolvimento de software.">
+  <title>Artigos | Codando na Rede</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="nav" id="nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-bracket">&lt;</span>codando na rede<span class="logo-bracket">/&gt;</span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html#sobre"       data-i18n="nav.about">Sobre</a>
+        <a href="index.html#skills">Skills</a>
+        <a href="index.html#experiencia" data-i18n="nav.experience">Experiência</a>
+        <a href="articles.html"          data-i18n="nav.articles" class="nav-active">Artigos</a>
+        <a href="mailto:mateusdevsousa@gmail.com" class="nav-cta" data-i18n="nav.contact">Contato</a>
+      </div>
+      <div class="nav-right">
+        <button class="lang-toggle" id="langToggle" aria-label="Switch language">
+          <span class="lang-label" id="langLabel">EN</span>
+        </button>
+        <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        <button class="nav-toggle" id="navToggle" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== PAGE HEADER ===== -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-tag" data-i18n="articles.tag">// artigos</span>
+      <h1 class="page-hero-title" data-i18n="articles.title">Últimos Artigos</h1>
+      <p class="page-hero-subtitle" data-i18n="articles.subtitle">
+        Conteúdo sobre Swift, performance mobile, arquitetura e o dia a dia de um engenheiro iOS.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== ARTICLES GRID ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="articles-grid">
+
+        <article class="article-card featured reveal">
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="article-category">Performance</span>
+              <span class="article-date" data-i18n="articles.soon">Em breve</span>
+            </div>
+            <h3 class="article-title" data-i18n="articles.a1.title">Como reduzimos o StartupTime em apps de grande escala</h3>
+            <p class="article-excerpt" data-i18n="articles.a1.excerpt">
+              Um mergulho profundo nas técnicas e ferramentas que utilizamos para otimizar o tempo de
+              inicialização de apps com milhões de usuários — do diagnóstico com Instruments à entrega em produção.
+            </p>
+            <div class="article-footer">
+              <span class="article-read-time" data-i18n="articles.a1.time">⏱ 8 min de leitura</span>
+              <span class="article-badge coming-soon" data-i18n="articles.soon">Em breve</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="article-card reveal">
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="article-category" data-i18n="articles.cat.arch">Arquitetura</span>
+              <span class="article-date" data-i18n="articles.soon">Em breve</span>
+            </div>
+            <h3 class="article-title" data-i18n="articles.a2.title">Clean Architecture em iOS: do conceito à prática</h3>
+            <p class="article-excerpt" data-i18n="articles.a2.excerpt">
+              Como aplicar os princípios da Clean Architecture em projetos iOS reais,
+              com exemplos práticos em Swift e casos do mundo real.
+            </p>
+            <div class="article-footer">
+              <span class="article-read-time" data-i18n="articles.a2.time">⏱ 10 min de leitura</span>
+              <span class="article-badge coming-soon" data-i18n="articles.soon">Em breve</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="article-card reveal">
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="article-category">Swift</span>
+              <span class="article-date" data-i18n="articles.soon">Em breve</span>
+            </div>
+            <h3 class="article-title" data-i18n="articles.a3.title">Concorrência em Swift: async/await e atores na prática</h3>
+            <p class="article-excerpt" data-i18n="articles.a3.excerpt">
+              Entenda o modelo de concorrência moderno do Swift e como ele resolve
+              os problemas clássicos de thread safety de forma elegante e segura.
+            </p>
+            <div class="article-footer">
+              <span class="article-read-time" data-i18n="articles.a3.time">⏱ 12 min de leitura</span>
+              <span class="article-badge coming-soon" data-i18n="articles.soon">Em breve</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <a href="index.html" class="footer-logo">
+          <span class="logo-bracket">&lt;</span>codando na rede<span class="logo-bracket">/&gt;</span>
+        </a>
+        <p class="footer-tagline" data-i18n="footer.tagline">Compartilhando conhecimento, um commit de cada vez.</p>
+        <div class="footer-socials">
+          <a href="https://github.com/MateusDeSousa" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.linkedin.com/in/mateusdesousa" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="mailto:mateusdevsousa@gmail.com">Email</a>
+        </div>
+        <p class="footer-copy" data-i18n="footer.copy">© 2026 Mateus Sousa · Feito com ❤️ e Swift</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      pt: {
+        'nav.about':        'Sobre',
+        'nav.experience':   'Experiência',
+        'nav.articles':     'Artigos',
+        'nav.contact':      'Contato',
+        'articles.tag':      '// artigos',
+        'articles.title':    'Últimos Artigos',
+        'articles.subtitle': 'Conteúdo sobre Swift, performance mobile, arquitetura e o dia a dia de um engenheiro iOS.',
+        'articles.soon':     'Em breve',
+        'articles.cat.arch': 'Arquitetura',
+        'articles.a1.title': 'Como reduzimos o StartupTime em apps de grande escala',
+        'articles.a1.excerpt':'Um mergulho profundo nas técnicas e ferramentas que utilizamos para otimizar o tempo de inicialização de apps com milhões de usuários — do diagnóstico com Instruments à entrega em produção.',
+        'articles.a1.time':  '⏱ 8 min de leitura',
+        'articles.a2.title': 'Clean Architecture em iOS: do conceito à prática',
+        'articles.a2.excerpt':'Como aplicar os princípios da Clean Architecture em projetos iOS reais, com exemplos práticos em Swift e casos do mundo real.',
+        'articles.a2.time':  '⏱ 10 min de leitura',
+        'articles.a3.title': 'Concorrência em Swift: async/await e atores na prática',
+        'articles.a3.excerpt':'Entenda o modelo de concorrência moderno do Swift e como ele resolve os problemas clássicos de thread safety de forma elegante e segura.',
+        'articles.a3.time':  '⏱ 12 min de leitura',
+        'footer.tagline': 'Compartilhando conhecimento, um commit de cada vez.',
+        'footer.copy':    '© 2026 Mateus Sousa · Feito com ❤️ e Swift',
+      },
+      en: {
+        'nav.about':        'About',
+        'nav.experience':   'Experience',
+        'nav.articles':     'Articles',
+        'nav.contact':      'Contact',
+        'articles.tag':      '// articles',
+        'articles.title':    'Latest Articles',
+        'articles.subtitle': 'Content about Swift, mobile performance, architecture and the day-to-day life of an iOS engineer.',
+        'articles.soon':     'Coming soon',
+        'articles.cat.arch': 'Architecture',
+        'articles.a1.title': 'How we reduced StartupTime in large-scale apps',
+        'articles.a1.excerpt':'A deep dive into the techniques and tools we used to optimize the startup time of apps with millions of users — from diagnostics with Instruments to production delivery.',
+        'articles.a1.time':  '⏱ 8 min read',
+        'articles.a2.title': 'Clean Architecture in iOS: from concept to practice',
+        'articles.a2.excerpt':'How to apply Clean Architecture principles in real iOS projects, with practical Swift examples and real-world cases.',
+        'articles.a2.time':  '⏱ 10 min read',
+        'articles.a3.title': 'Concurrency in Swift: async/await and actors in practice',
+        'articles.a3.excerpt':'Understand Swift\'s modern concurrency model and how it solves classic thread safety problems in an elegant and safe way.',
+        'articles.a3.time':  '⏱ 12 min read',
+        'footer.tagline': 'Sharing knowledge, one commit at a time.',
+        'footer.copy':    '© 2026 Mateus Sousa · Made with ❤️ and Swift',
+      }
+    };
+
+    let currentLang = localStorage.getItem('lang') || 'en';
+
+    function applyLang(lang) {
+      const t = translations[lang];
+      document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        if (t[el.dataset.i18n] !== undefined) el.textContent = t[el.dataset.i18n];
+      });
+      document.getElementById('langLabel').textContent = lang === 'pt' ? 'EN' : 'PT';
+      currentLang = lang;
+    }
+
+    applyLang(currentLang);
+
+    document.getElementById('langToggle').addEventListener('click', () => {
+      const next = currentLang === 'pt' ? 'en' : 'pt';
+      localStorage.setItem('lang', next);
+      applyLang(next);
+    });
+
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+
+    document.getElementById('navToggle').addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') !== 'dark') html.setAttribute('data-theme', 'light');
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      const isLight = html.getAttribute('data-theme') === 'light';
+      html.setAttribute('data-theme', isLight ? 'dark' : 'light');
+      localStorage.setItem('theme', isLight ? 'dark' : 'light');
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
