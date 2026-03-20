@@ -681,10 +681,10 @@ body {
 .timeline::before {
   content: '';
   position: absolute;
-  left: 15px;
+  left: 19px;
   top: 0;
   bottom: 0;
-  width: 1px;
+  width: 2px;
   background: var(--border);
 }
 
