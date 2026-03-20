@@ -736,11 +736,75 @@ body {
   margin-bottom: 14px;
   flex-wrap: wrap;
 }
+
+.card-company-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Company badge */
+.company-badge {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  transition: transform var(--transition), box-shadow var(--transition);
+  position: relative;
+}
+.company-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+.company-badge img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 6px;
+  background: #fff;
+}
+.badge-fallback {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+/* Brand colours */
+.badge-ml  { background: #FFE600; }
+.badge-ml  .badge-fallback { color: #1a1a1a; }
+.badge-pp  { background: #21C25E; }
+.badge-pp  .badge-fallback { color: #fff; }
+.badge-dbc { background: #0052CC; }
+.badge-dbc .badge-fallback { color: #fff; }
+.badge-mob { background: #1A56DB; }
+.badge-mob .badge-fallback { color: #fff; }
+.badge-gag { background: #DC2626; }
+.badge-gag .badge-fallback { color: #fff; }
+
 .card-company {
   font-size: 1.05rem;
   font-weight: 600;
   margin-bottom: 4px;
 }
+.card-company a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition);
+}
+.card-company a:hover { color: var(--primary); }
+
 .card-role {
   font-size: 0.82rem;
   color: var(--primary);
