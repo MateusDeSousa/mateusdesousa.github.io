@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Minha jornada migrando um projeto iOS para o Bazel — como reduzimos o tempo de build de 52 para 11 minutos em uma big tech.">
+  <meta property="og:title" content="Minha Jornada migrando um projeto iOS para o Bazel | Codando na Rede">
+  <title>Minha Jornada migrando um projeto iOS para o Bazel | Codando na Rede</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="nav" id="nav">
+    <div class="nav-container">
+      <a href="../../index.html" class="nav-logo">
+        <span class="logo-bracket">&lt;</span>codando na rede<span class="logo-bracket">/&gt;</span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="../../index.html#sobre"       data-i18n="nav.about">Sobre</a>
+        <a href="../../index.html#skills">Skills</a>
+        <a href="../../index.html#experiencia" data-i18n="nav.experience">Experiência</a>
+        <a href="../../articles.html"          data-i18n="nav.articles" class="nav-active">Artigos</a>
+        <a href="mailto:mateusdevsousa@gmail.com" class="nav-cta" data-i18n="nav.contact">Contato</a>
+      </div>
+      <div class="nav-right">
+        <button class="lang-toggle" id="langToggle" aria-label="Switch language">
+          <span class="lang-label" id="langLabel">EN</span>
+        </button>
+        <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        <button class="nav-toggle" id="navToggle" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== ARTICLE HERO ===== -->
+  <section class="article-hero">
+    <div class="container">
+      <a href="../../articles.html" class="article-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        <span data-i18n="article.back">Todos os artigos</span>
+      </a>
+      <span class="article-category-pill">Performance · Bazel</span>
+      <h1 class="article-hero-title" data-i18n="article.title">Minha Jornada migrando um projeto iOS para o Bazel</h1>
+      <div class="article-hero-meta">
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span data-i18n="article.date">12 ago 2023</span>
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span data-i18n="article.readtime">⏱ 10 min de leitura</span>
+        </span>
+        <span>Mateus Sousa</span>
+      </div>
+      <img src="assets/1*aitXtAmWI_sc-Nf5wzCR2g.webp" alt="Migração do Xcode para o Bazel" class="article-img-cover">
+    </div>
+  </section>
+
+  <!-- ===== ARTICLE BODY ===== -->
+  <article class="article-body">
+    <div class="container">
+      <div class="prose">
+
+        <p data-i18n-html="article.intro1">
+          Em grandes empresas de tecnologia, um problema recorrente são os <strong>tempos de build altos</strong>,
+          que trazem consigo toda uma cascata de problemas como: diminuição de produtividade dos engenheiros ao
+          construir e/ou testar softwares localmente, grandes filas no CI, ocasionando morosidade de feedback
+          dos testes e integração de pull requests, entre outros.
+        </p>
+        <p data-i18n-html="article.intro2">
+          Algumas empresas investem em super máquinas para os engenheiros e CI a fim de tentar solucionar,
+          mas esse tipo de saída costuma ser a mais cara e não é escalável, pois dependendo da velocidade de
+          crescimento do software, essa solução pode durar apenas alguns meses.
+        </p>
+        <p data-i18n-html="article.intro3">
+          No contexto de iOS, temos disponíveis algumas soluções bem mais baratas e escaláveis (mas às vezes
+          também não tão rápidas para implementar). Pensando nisso, resolvi detalhar neste artigo a minha
+          jornada ao utilizar a ferramenta <strong>Bazel</strong> para solucionar esse problema em uma big tech.
+        </p>
+
+        <h2 data-i18n="article.s1.title">Por que Bazel e não outro build system?</h2>
+        <p data-i18n-html="article.s1.p1">
+          Bazel já possui uma comunidade iOS bem consolidada e bastante colaborativa, e para o projeto a qual
+          estava avaliando, o Bazel se encaixava perfeitamente por ter a estrutura ideal
+          (<strong>monorepo + modularização por frameworks</strong>).
+        </p>
+        <p data-i18n-html="article.s1.p2">
+          Outros build systems que poderiam ser utilizados seriam o <strong>Buck</strong> (inclusive já existem
+          empresas brasileiras que obtiveram sucesso com esse build system), porém, existe um movimento em
+          big techs que visa migrar do Buck para o Bazel por "n" fatores, o que levantou uma bandeira em
+          relação à adoção dele e como seria a sustentabilidade do mesmo.
+        </p>
+        <p data-i18n-html="article.s1.p3">
+          Além disso, uma parte da implementação do Bazel já havia sido iniciada dentro do projeto, mas ficou
+          parada por alguns meses e sem manutenção — logo, não estava funcionando.
+        </p>
+
+        <h2 data-i18n="article.s2.title">Desafio de manutenabilidade</h2>
+        <div class="callout" data-i18n-html="article.s2.callout">
+          <strong>"Automatize o máximo que der primeiro e depois foque na evolução."</strong><br>
+          Foi com essa premissa que iniciei a migração.
+        </div>
+        <p data-i18n-html="article.s2.intro">Pensando nisso, mostro alguns exemplos de automação que usei para que a própria ferramenta se sustentasse com a evolução do projeto:</p>
+
+        <h3 data-i18n="article.s2.h3a">Criação de novos módulos (frameworks)</h3>
+        <p data-i18n-html="article.s2.p1">
+          A cada novo framework, era necessário criar um arquivo <code>BUILD</code>, para possibilitar a
+          construção pelo Bazel. Para isso, foi adotada a abordagem de copiar um arquivo de template para o
+          novo módulo, alterando apenas os placeholders do arquivo <code>BUILD</code> copiado.
+        </p>
+        <p><strong data-i18n="article.s2.label.template">Exemplo de template:</strong></p>
+        <pre><code>load("@build_bazel_rules_ios//rules:framework.bzl", "apple_framework")
+load("@build_bazel_rules_ios//rules:test.bzl", "ios_unit_test")
+
+apple_framework(
+    name = "&lt;framework_name&gt;",
+    srcs = glob([
+        "&lt;framework_name&gt;/**/*.swift"
+    ]),
+    deps = []
+)
+
+ios_unit_test(
+    name = "&lt;framework_name&gt;Tests",
+    deps = [
+        ":&lt;framework_name&gt;"
+    ],
+    srcs = glob([
+        "&lt;framework_name&gt;Tests/**/*.swift"
+    ]),
+    size = "small"
+)</code></pre>
+        <p><strong data-i18n="article.s2.label.script">Exemplo de script:</strong></p>
+        <pre><code>cp Templates/BUILD.bazel Modules/NewModule/
+find . ! -name ".bazel" -type f -exec sh -c \
+  "sed -i '' 's/&lt;framework_name&gt;/NewModule/g' '{}'" \;</code></pre>
+
+        <h3 data-i18n="article.s2.h3b">Resolução de dependências</h3>
+        <p data-i18n-html="article.s2.p2">
+          A cada import de um framework, é necessário adicioná-lo como dependência no arquivo <code>BUILD</code>
+          do framework ou application dependente, forçando o engenheiro a visitar esses arquivos para adicionar
+          manualmente.
+        </p>
+        <p data-i18n-html="article.s2.p3">
+          A solução desenvolvida foi criar um <strong>script de resolução automática de dependências</strong>,
+          baseado no algoritmo de busca em profundidade e, após coletar as dependências de cada framework,
+          reescreve a sessão de dependências de um arquivo <code>BUILD</code>. Isso é útil tanto para a
+          inclusão de uma nova dependência com base nos imports nos arquivos Swift, quanto para a exclusão,
+          quando não existe mais imports para tal framework.
+        </p>
+
+        <h2 data-i18n="article.s3.title">Erros de compilação</h2>
+        <p data-i18n-html="article.s3.p1">
+          Um dos grandes problemas que encontrei ao realizar a migração foi compilar targets do tipo
+          <code>application</code> que possuíam <strong>código fonte misto (Objective-C + Swift)</strong>.
+          Já era um problema esperado devido a relatos de outras empresas que tiveram complicações de
+          interoperabilidade usando o Bazel. Para minha sorte, o <code>rules_ios</code> já resolvia boa parte
+          dos problemas, mas alguns casos específicos persistiram:
+        </p>
+        <pre><code>bazel-out/ios-applebin/bin/app/Workout-Swift.h:217:9 fatal error:
+  '/var/folders/2sdfs/Workout-Bridging-Header-1.pch' file not found
+
+#import "/var/folders/2sdfs/Workout-Bridging-Header-1.pch"
+
+1 error generated
+Error in child process '/usr/bin/xcrun'. 1</code></pre>
+        <p data-i18n-html="article.s3.p2">Depois de pesquisar e fazer POCs separadas, consegui reproduzir o mesmo problema, que acontecia nos seguintes casos:</p>
+        <ul>
+          <li data-i18n-html="article.s3.li1"><strong>Extension de uma class Objective-C escrita em Swift</strong> com a notação <code>@objc</code>, tornando-as visíveis em código Objective-C por meio do arquivo <code>NomeDoApp-Swift.h</code> auto gerado durante compilação.</li>
+          <li data-i18n-html="article.s3.li2"><strong>Classes escritas em Swift que herdam de uma class Objective-C.</strong></li>
+        </ul>
+        <p data-i18n-html="article.s3.p3">
+          Nessas duas ocorrências, o Xcode conseguia se virar bem — mas o Bazel ainda não conseguia resolver.
+          Então eu decidi resolver por ele, já que ao fazer o levantamento de esforço não seria tão complexo.
+        </p>
+
+        <h2 data-i18n="article.s4.title">Implementação do Bazel cache</h2>
+        <p data-i18n-html="article.s4.p1">
+          Após fazer o Bazel funcionar corretamente, era hora de usá-lo como build system oficial no CI,
+          a fim de testar as Pull Requests.
+        </p>
+        <div class="metric-highlight" data-i18n-html="article.s4.metric1">
+          Após alguns dias, a métrica de tempo build&amp;tests <strong>P50 foi de 52 min → 42 min</strong>
+          (de Xcode para Bazel, sem cache).
+        </div>
+        <p data-i18n-html="article.s4.p2">
+          No entanto, ainda não utilizávamos uma das features principais do Bazel: o seu
+          <strong>mecanismo de cache</strong>. Para isso, foi necessário subir um serviço do
+          <code>bazel-remote</code> para gerenciar os artefatos de cache gerados em builds no CI e
+          poder reaproveitar em builds subsequentes.
+        </p>
+        <img src="assets/1*ViM7RLc_f0WHudVbKy5vig.webp" alt="Diagrama do Bazel-remote Service" class="article-img">
+        <p class="article-img-caption" data-i18n="article.s4.img1cap">Arquitetura do Bazel-remote Service distribuindo cache entre os builds do CI</p>
+        <div class="metric-highlight" data-i18n-html="article.s4.metric2">
+          Com o cache ativo, a métrica <strong>P50 caiu para 28 minutos</strong>. Existia possibilidade
+          de reduzir mais, mas limitações de infraestrutura precisariam ser trabalhadas antes de suportar
+          a grande transferência de dados.
+        </div>
+
+        <h2 data-i18n="article.s5.title">Testar somente o necessário</h2>
+        <p data-i18n-html="article.s5.p1">
+          A forma como o cache do Bazel é gerado auxilia na implementação de soluções performáticas para
+          minimizar o tempo de build&amp;test sem afetar a qualidade dos feedbacks. Uma dessas soluções é o
+          <strong>bazel-diff</strong>, que busca a diferença entre commits e forma uma lista contendo somente
+          os targets afetados pelas alterações no código fonte.
+        </p>
+        <p data-i18n-html="article.s5.p2">
+          Da forma como o CI estava implementado no projeto, essa ferramenta não funcionaria corretamente.
+          Então criei uma versão simplificada do <code>bazel-diff</code>, construída da seguinte forma:
+        </p>
+        <p><strong data-i18n="article.s5.step1">1. Identificar quais módulos foram modificados via GitHub CLI:</strong></p>
+        <pre><code>pr_diff=$(gh pr view ${PULL_REQUEST_NUMBER} --json files --jq '.files[].path')</code></pre>
+        <p><strong data-i18n="article.s5.step2">2. Usar <code>bazel query</code> com <code>rdeps</code> para encontrar módulos afetados implicitamente:</strong></p>
+        <pre><code>bazel query 'kind("ios_unit_test", rdeps(//app/..., //Modules/ModifiedModule))'</code></pre>
+        <p><strong data-i18n="article.s5.step3">3. Passar o resultado para o <code>bazel test</code>:</strong></p>
+        <pre><code>bazel test //Module1:Module1Tests //Module2:Module2Tests //Module3:Module3Tests</code></pre>
+        <p data-i18n-html="article.s5.p3">
+          A vantagem dessa solução é que deixou a execução com comportamento semelhante a algoritmos
+          logarítmicos: mesmo aumentando a base de código, o tempo de execução se mantém estável com
+          curva de crescimento baixíssima. Abaixo, os ganhos alcançados:
+        </p>
+        <img src="assets/1*JBIO_nAOqWY4cLcoYU5B0w.webp" alt="Gráfico: 54% builds mais rápidos com Bazel" class="article-img">
+        <p class="article-img-caption" data-i18n="article.s5.img2cap">~54% de redução no tempo de build após testes seletivos com bazel-diff</p>
+
+        <h2 data-i18n="article.s6.title">RIP: SDKs legados</h2>
+        <p data-i18n-html="article.s6.p1">
+          Projetos de larga escala com certo tempo de existência possuem tecnologias ou implementações
+          defasadas. Isso dificulta a implementação de ferramentas recentes.
+        </p>
+        <p data-i18n-html="article.s6.p2">
+          Algumas bibliotecas externas pré-compiladas inseridas em projetos iOS ainda não possuem suporte
+          para <strong>Simuladores arm64</strong>. Nesses tipos de projetos, não é possível usar o binário
+          do Bazel arm64 para compilar.
+        </p>
+        <p data-i18n-html="article.s6.p3">
+          Buscando soluções, passei a usar o <strong>arm-to-sim</strong>, que pegava o slice arm64
+          disponibilizado para iPhoneOS e manipulava para que fosse visto pelo compilador como um binário
+          arm64 para Simuladores. Essa solução era muito boa para cerca de <strong>95% das bibliotecas</strong>
+          sem suporte existentes no projeto. Os 5% restantes não poderiam se beneficiar com ela, então foi
+          montado um plano para que os times responsáveis atualizassem as mesmas.
+        </p>
+        <p data-i18n-html="article.s6.p4">
+          Após atualizar todas as bibliotecas para conter suporte para simuladores arm64 e não utilizar
+          nenhum tipo de "hack", realizei a mudança do executável para o Bazel arm64. Com essa mudança
+          tivemos ganhos incríveis:
+        </p>
+        <img src="assets/1*uWAKOzgBUmiDKsua9w-2pg.webp" alt="Gráfico: 78% builds mais rápidos com Bazel — 11.3 min" class="article-img">
+        <p class="article-img-caption" data-i18n="article.s6.img3cap">Resultado final: ~78% de redução — de 52 min para 11.3 min de build P50</p>
+
+        <h2 data-i18n="article.s7.title">Alguns aprendizados extraídos</h2>
+        <p data-i18n-html="article.s7.intro">Nem tudo com o Bazel são maravilhas. Alguns pontos de atenção:</p>
+        <ul>
+          <li data-i18n-html="article.s7.li1">A comunidade Bazel iOS enfrenta erros comuns como <strong>timeout de simuladores</strong> ao executar testes e <strong>travamentos de GPU em macOS virtualizados</strong>. Empresas costumam desenvolver soluções próprias e não as divulgam.</li>
+          <li data-i18n-html="article.s7.li2">Ao adotar um build system diferente do <code>xcodebuild</code>, você traz a <strong>manutenabilidade e o poder de customização</strong> para suas mãos — o que é bom e ruim ao mesmo tempo.</li>
+          <li data-i18n-html="article.s7.li3">Existem <strong>poucos profissionais</strong> interessados nessa área. Concentrar esse conhecimento em poucos indivíduos é um risco. Se vai implementar, <strong>fomente o conhecimento na equipe</strong>.</li>
+          <li data-i18n-html="article.s7.li4">Bazel, Buck e similares <strong>podem não ser a solução para o seu produto</strong>. Talvez você esteja resolvendo um problema que nem existe. Realize um estudo com empresas e devs que já usam essas ferramentas, colete os prós e contras, e faça experimentos antes de bater o martelo.</li>
+        </ul>
+
+        <div class="article-footer-nav">
+          <a href="../../articles.html" class="btn btn-outline">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+            <span data-i18n="article.back">Todos os artigos</span>
+          </a>
+          <div class="hero-socials">
+            <a href="https://github.com/MateusDeSousa" target="_blank" rel="noopener" class="social-link" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/mateusdesousa" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </article>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <a href="../../index.html" class="footer-logo">
+          <span class="logo-bracket">&lt;</span>codando na rede<span class="logo-bracket">/&gt;</span>
+        </a>
+        <p class="footer-tagline" data-i18n="footer.tagline">Compartilhando conhecimento, um commit de cada vez.</p>
+        <div class="footer-socials">
+          <a href="https://github.com/MateusDeSousa" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.linkedin.com/in/mateusdesousa" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="mailto:mateusdevsousa@gmail.com">Email</a>
+        </div>
+        <p class="footer-copy" data-i18n="footer.copy">© 2026 Mateus Sousa · Feito com ❤️ e Swift</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      pt: {
+        'nav.about': 'Sobre', 'nav.experience': 'Experiência',
+        'nav.articles': 'Artigos', 'nav.contact': 'Contato',
+        'footer.tagline': 'Compartilhando conhecimento, um commit de cada vez.',
+        'footer.copy': '© 2026 Mateus Sousa · Feito com ❤️ e Swift',
+
+        'article.back':     'Todos os artigos',
+        'article.title':    'Minha Jornada migrando um projeto iOS para o Bazel',
+        'article.date':     '12 ago 2023',
+        'article.readtime': '⏱ 10 min de leitura',
+
+        'article.intro1': 'Em grandes empresas de tecnologia, um problema recorrente são os <strong>tempos de build altos</strong>, que trazem consigo toda uma cascata de problemas como: diminuição de produtividade dos engenheiros ao construir e/ou testar softwares localmente, grandes filas no CI, ocasionando morosidade de feedback dos testes e integração de pull requests, entre outros.',
+        'article.intro2': 'Algumas empresas investem em super máquinas para os engenheiros e CI a fim de tentar solucionar, mas esse tipo de saída costuma ser a mais cara e não é escalável, pois dependendo da velocidade de crescimento do software, essa solução pode durar apenas alguns meses.',
+        'article.intro3': 'No contexto de iOS, temos disponíveis algumas soluções bem mais baratas e escaláveis (mas às vezes também não tão rápidas para implementar). Pensando nisso, resolvi detalhar neste artigo a minha jornada ao utilizar a ferramenta <strong>Bazel</strong> para solucionar esse problema em uma big tech.',
+
+        'article.s1.title': 'Por que Bazel e não outro build system?',
+        'article.s1.p1': 'Bazel já possui uma comunidade iOS bem consolidada e bastante colaborativa, e para o projeto a qual estava avaliando, o Bazel se encaixava perfeitamente por ter a estrutura ideal (<strong>monorepo + modularização por frameworks</strong>).',
+        'article.s1.p2': 'Outros build systems que poderiam ser utilizados seriam o <strong>Buck</strong> (inclusive já existem empresas brasileiras que obtiveram sucesso com esse build system), porém, existe um movimento em big techs que visa migrar do Buck para o Bazel por "n" fatores, o que levantou uma bandeira em relação à adoção dele e como seria a sustentabilidade do mesmo.',
+        'article.s1.p3': 'Além disso, uma parte da implementação do Bazel já havia sido iniciada dentro do projeto, mas ficou parada por alguns meses e sem manutenção — logo, não estava funcionando.',
+
+        'article.s2.title': 'Desafio de manutenabilidade',
+        'article.s2.callout': '<strong>"Automatize o máximo que der primeiro e depois foque na evolução."</strong><br>Foi com essa premissa que iniciei a migração.',
+        'article.s2.intro': 'Pensando nisso, mostro alguns exemplos de automação que usei para que a própria ferramenta se sustentasse com a evolução do projeto:',
+        'article.s2.h3a': 'Criação de novos módulos (frameworks)',
+        'article.s2.p1': 'A cada novo framework, era necessário criar um arquivo <code>BUILD</code>, para possibilitar a construção pelo Bazel. Para isso, foi adotada a abordagem de copiar um arquivo de template para o novo módulo, alterando apenas os placeholders do arquivo <code>BUILD</code> copiado.',
+        'article.s2.label.template': 'Exemplo de template:',
+        'article.s2.label.script':   'Exemplo de script:',
+        'article.s2.h3b': 'Resolução de dependências',
+        'article.s2.p2': 'A cada import de um framework, é necessário adicioná-lo como dependência no arquivo <code>BUILD</code> do framework ou application dependente, forçando o engenheiro a visitar esses arquivos para adicionar manualmente.',
+        'article.s2.p3': 'A solução desenvolvida foi criar um <strong>script de resolução automática de dependências</strong>, baseado no algoritmo de busca em profundidade e, após coletar as dependências de cada framework, reescreve a sessão de dependências de um arquivo <code>BUILD</code>. Isso é útil tanto para a inclusão de uma nova dependência com base nos imports nos arquivos Swift, quanto para a exclusão, quando não existe mais imports para tal framework.',
+
+        'article.s3.title': 'Erros de compilação',
+        'article.s3.p1': 'Um dos grandes problemas que encontrei ao realizar a migração foi compilar targets do tipo <code>application</code> que possuíam <strong>código fonte misto (Objective-C + Swift)</strong>. Já era um problema esperado devido a relatos de outras empresas que tiveram complicações de interoperabilidade usando o Bazel. Para minha sorte, o <code>rules_ios</code> já resolvia boa parte dos problemas, mas alguns casos específicos persistiram:',
+        'article.s3.p2': 'Depois de pesquisar e fazer POCs separadas, consegui reproduzir o mesmo problema, que acontecia nos seguintes casos:',
+        'article.s3.li1': '<strong>Extension de uma class Objective-C escrita em Swift</strong> com a notação <code>@objc</code>, tornando-as visíveis em código Objective-C por meio do arquivo <code>NomeDoApp-Swift.h</code> auto gerado durante compilação.',
+        'article.s3.li2': '<strong>Classes escritas em Swift que herdam de uma class Objective-C.</strong>',
+        'article.s3.p3': 'Nessas duas ocorrências, o Xcode conseguia se virar bem — mas o Bazel ainda não conseguia resolver. Então eu decidi resolver por ele, já que ao fazer o levantamento de esforço não seria tão complexo.',
+
+        'article.s4.title': 'Implementação do Bazel cache',
+        'article.s4.p1': 'Após fazer o Bazel funcionar corretamente, era hora de usá-lo como build system oficial no CI, a fim de testar as Pull Requests.',
+        'article.s4.metric1': 'Após alguns dias, a métrica de tempo build&amp;tests <strong>P50 foi de 52 min → 42 min</strong> (de Xcode para Bazel, sem cache).',
+        'article.s4.p2': 'No entanto, ainda não utilizávamos uma das features principais do Bazel: o seu <strong>mecanismo de cache</strong>. Para isso, foi necessário subir um serviço do <code>bazel-remote</code> para gerenciar os artefatos de cache gerados em builds no CI e poder reaproveitar em builds subsequentes.',
+        'article.s4.img1cap': 'Arquitetura do Bazel-remote Service distribuindo cache entre os builds do CI',
+        'article.s4.metric2': 'Com o cache ativo, a métrica <strong>P50 caiu para 28 minutos</strong>. Existia possibilidade de reduzir mais, mas limitações de infraestrutura precisariam ser trabalhadas antes de suportar a grande transferência de dados.',
+
+        'article.s5.title': 'Testar somente o necessário',
+        'article.s5.p1': 'A forma como o cache do Bazel é gerado auxilia na implementação de soluções performáticas para minimizar o tempo de build&amp;test sem afetar a qualidade dos feedbacks. Uma dessas soluções é o <strong>bazel-diff</strong>, que busca a diferença entre commits e forma uma lista contendo somente os targets afetados pelas alterações no código fonte.',
+        'article.s5.p2': 'Da forma como o CI estava implementado no projeto, essa ferramenta não funcionaria corretamente. Então criei uma versão simplificada do <code>bazel-diff</code>, construída da seguinte forma:',
+        'article.s5.step1': '1. Identificar quais módulos foram modificados via GitHub CLI:',
+        'article.s5.step2': '2. Usar bazel query com rdeps para encontrar módulos afetados implicitamente:',
+        'article.s5.step3': '3. Passar o resultado para o bazel test:',
+        'article.s5.p3': 'A vantagem dessa solução é que deixou a execução com comportamento semelhante a algoritmos logarítmicos: mesmo aumentando a base de código, o tempo de execução se mantém estável com curva de crescimento baixíssima. Abaixo, os ganhos alcançados:',
+        'article.s5.img2cap': '~54% de redução no tempo de build após testes seletivos com bazel-diff',
+
+        'article.s6.title': 'RIP: SDKs legados',
+        'article.s6.p1': 'Projetos de larga escala com certo tempo de existência possuem tecnologias ou implementações defasadas. Isso dificulta a implementação de ferramentas recentes.',
+        'article.s6.p2': 'Algumas bibliotecas externas pré-compiladas inseridas em projetos iOS ainda não possuem suporte para <strong>Simuladores arm64</strong>. Nesses tipos de projetos, não é possível usar o binário do Bazel arm64 para compilar.',
+        'article.s6.p3': 'Buscando soluções, passei a usar o <strong>arm-to-sim</strong>, que pegava o slice arm64 disponibilizado para iPhoneOS e manipulava para que fosse visto pelo compilador como um binário arm64 para Simuladores. Essa solução era muito boa para cerca de <strong>95% das bibliotecas</strong> sem suporte existentes no projeto. Os 5% restantes não poderiam se beneficiar com ela, então foi montado um plano para que os times responsáveis atualizassem as mesmas.',
+        'article.s6.p4': 'Após atualizar todas as bibliotecas para conter suporte para simuladores arm64 e não utilizar nenhum tipo de "hack", realizei a mudança do executável para o Bazel arm64. Com essa mudança tivemos ganhos incríveis:',
+        'article.s6.img3cap': 'Resultado final: ~78% de redução — de 52 min para 11.3 min de build P50',
+
+        'article.s7.title': 'Alguns aprendizados extraídos',
+        'article.s7.intro': 'Nem tudo com o Bazel são maravilhas. Alguns pontos de atenção:',
+        'article.s7.li1': 'A comunidade Bazel iOS enfrenta erros comuns como <strong>timeout de simuladores</strong> ao executar testes e <strong>travamentos de GPU em macOS virtualizados</strong>. Empresas costumam desenvolver soluções próprias e não as divulgam.',
+        'article.s7.li2': 'Ao adotar um build system diferente do <code>xcodebuild</code>, você traz a <strong>manutenabilidade e o poder de customização</strong> para suas mãos — o que é bom e ruim ao mesmo tempo.',
+        'article.s7.li3': 'Existem <strong>poucos profissionais</strong> interessados nessa área. Concentrar esse conhecimento em poucos indivíduos é um risco. Se vai implementar, <strong>fomente o conhecimento na equipe</strong>.',
+        'article.s7.li4': 'Bazel, Buck e similares <strong>podem não ser a solução para o seu produto</strong>. Talvez você esteja resolvendo um problema que nem existe. Realize um estudo com empresas e devs que já usam essas ferramentas, colete os prós e contras, e faça experimentos antes de bater o martelo.',
+      },
+
+      en: {
+        'nav.about': 'About', 'nav.experience': 'Experience',
+        'nav.articles': 'Articles', 'nav.contact': 'Contact',
+        'footer.tagline': 'Sharing knowledge, one commit at a time.',
+        'footer.copy': '© 2026 Mateus Sousa · Made with ❤️ and Swift',
+
+        'article.back':     'All articles',
+        'article.title':    'My Journey Migrating an iOS Project to Bazel',
+        'article.date':     'Aug 12, 2023',
+        'article.readtime': '⏱ 10 min read',
+
+        'article.intro1': 'In large tech companies, a recurring problem is <strong>high build times</strong>, which bring a cascade of issues: decreased engineer productivity when building and/or testing software locally, long CI queues causing slow test feedback and pull request integration, among others.',
+        'article.intro2': 'Some companies invest in powerful machines for engineers and CI to try to solve this, but that approach is usually the most expensive and not scalable — depending on the software\'s growth rate, this solution may only last a few months.',
+        'article.intro3': 'In the iOS context, there are much cheaper and more scalable solutions available (though sometimes not as quick to implement). With that in mind, I decided to detail in this article my journey using the <strong>Bazel</strong> tool to solve this problem at a big tech company.',
+
+        'article.s1.title': 'Why Bazel and not another build system?',
+        'article.s1.p1': 'Bazel already has a well-established and collaborative iOS community, and for the project I was evaluating, Bazel fit perfectly due to its ideal structure (<strong>monorepo + framework-based modularization</strong>).',
+        'article.s1.p2': 'Other build systems that could have been used include <strong>Buck</strong> (there are even Brazilian companies that have succeeded with it), however, there is a movement in big techs to migrate from Buck to Bazel for various reasons, which raised concerns regarding its adoption and long-term sustainability.',
+        'article.s1.p3': 'In addition, part of the Bazel implementation had already been started within the project, but had been stalled for a few months without maintenance — so it wasn\'t working.',
+
+        'article.s2.title': 'Maintainability Challenge',
+        'article.s2.callout': '<strong>"Automate as much as you can first, then focus on evolution."</strong><br>That was the premise I started the migration with.',
+        'article.s2.intro': 'With that in mind, here are some automation examples I used so the tool itself could sustain itself as the project evolved:',
+        'article.s2.h3a': 'Creating new modules (frameworks)',
+        'article.s2.p1': 'For each new framework, it was necessary to create a <code>BUILD</code> file to enable building with Bazel. The approach adopted was to copy a template file to the new module, changing only the placeholders in the copied <code>BUILD</code> file.',
+        'article.s2.label.template': 'Template example:',
+        'article.s2.label.script':   'Script example:',
+        'article.s2.h3b': 'Dependency resolution',
+        'article.s2.p2': 'For each framework import, it needs to be added as a dependency in the <code>BUILD</code> file of the dependent framework or application, forcing engineers to visit those files and add it manually.',
+        'article.s2.p3': 'The solution developed was to create an <strong>automatic dependency resolution script</strong>, based on the depth-first search algorithm, which after collecting each framework\'s dependencies, rewrites the dependencies section of a <code>BUILD</code> file. This is useful both for adding new dependencies based on Swift file imports, and for removal when there are no more imports for a given framework.',
+
+        'article.s3.title': 'Compilation Errors',
+        'article.s3.p1': 'One of the biggest problems I encountered during the migration was compiling <code>application</code> targets with <strong>mixed source code (Objective-C + Swift)</strong>. This was an expected issue based on reports from other companies that had interoperability complications using Bazel. Fortunately, <code>rules_ios</code> already solved most of the problems, but some specific cases persisted:',
+        'article.s3.p2': 'After researching and running separate POCs, I managed to reproduce the same problem, which occurred in the following cases:',
+        'article.s3.li1': '<strong>Extensions of an Objective-C class written in Swift</strong> with the <code>@objc</code> annotation, making them visible in Objective-C code through the auto-generated <code>AppName-Swift.h</code> file during compilation.',
+        'article.s3.li2': '<strong>Swift classes that inherit from an Objective-C class.</strong>',
+        'article.s3.p3': 'In both cases, Xcode handled it just fine — but Bazel still couldn\'t resolve it. So I decided to fix it myself, since the effort estimation wasn\'t too complex.',
+
+        'article.s4.title': 'Implementing Bazel Cache',
+        'article.s4.p1': 'After getting Bazel working correctly, it was time to use it as the official CI build system to test Pull Requests.',
+        'article.s4.metric1': 'After a few days, the build&amp;tests <strong>P50 metric went from 52 min → 42 min</strong> (from Xcode to Bazel, without cache).',
+        'article.s4.p2': 'However, we still weren\'t using one of Bazel\'s main features: its <strong>cache mechanism</strong>. For this, it was necessary to set up a <code>bazel-remote</code> service to manage cache artifacts generated in CI builds and reuse them in subsequent builds.',
+        'article.s4.img1cap': 'Bazel-remote Service architecture distributing cache across CI builds',
+        'article.s4.metric2': 'With cache enabled, the <strong>P50 metric dropped to 28 minutes</strong>. There was potential to reduce it further, but infrastructure limitations would need to be addressed before handling the large data transfer.',
+
+        'article.s5.title': 'Test Only What\'s Necessary',
+        'article.s5.p1': 'The way Bazel\'s cache is generated helps implementing performant solutions to minimize build&amp;test time without affecting feedback quality. One such solution is <strong>bazel-diff</strong>, which finds the difference between commits and forms a list containing only the targets affected by source code changes.',
+        'article.s5.p2': 'The way the CI was implemented in this project, that tool wouldn\'t work correctly. So I created a simplified version of <code>bazel-diff</code>, built as follows:',
+        'article.s5.step1': '1. Identify which modules were modified via GitHub CLI:',
+        'article.s5.step2': '2. Use bazel query with rdeps to find implicitly affected modules:',
+        'article.s5.step3': '3. Pass the result to bazel test:',
+        'article.s5.p3': 'The advantage of this solution is that it made execution behave like logarithmic algorithms: even as the codebase grows, execution time remains stable with a very low growth curve. Below, the gains achieved:',
+        'article.s5.img2cap': '~54% build time reduction after selective testing with bazel-diff',
+
+        'article.s6.title': 'RIP: Legacy SDKs',
+        'article.s6.p1': 'Large-scale projects with some age have outdated technologies or implementations. This makes it harder to implement modern tools.',
+        'article.s6.p2': 'Some precompiled external libraries included in iOS projects still don\'t have support for <strong>arm64 Simulators</strong>. In these types of projects, it\'s not possible to use the arm64 Bazel binary to compile.',
+        'article.s6.p3': 'Seeking solutions, I started using <strong>arm-to-sim</strong>, which took the arm64 slice available for iPhoneOS and manipulated it so it would be seen by the compiler as an arm64 binary for Simulators. This solution worked great for about <strong>95% of unsupported libraries</strong> in the project. The remaining 5% couldn\'t benefit from it, so a plan was made for the responsible teams to update them.',
+        'article.s6.p4': 'After updating all libraries to include arm64 simulator support without any "hacks", I switched the executable to Bazel arm64. With this change we had incredible gains:',
+        'article.s6.img3cap': 'Final result: ~78% reduction — from 52 min to 11.3 min build P50',
+
+        'article.s7.title': 'Some Lessons Learned',
+        'article.s7.intro': 'Not everything with Bazel is great. Some points to watch out for:',
+        'article.s7.li1': 'The Bazel iOS community faces common errors like <strong>simulator timeouts</strong> during test execution and <strong>GPU freezes on virtualized macOS</strong>. Companies often develop internal solutions and don\'t share them.',
+        'article.s7.li2': 'By adopting a build system other than <code>xcodebuild</code>, you bring <strong>maintainability and customization power</strong> into your own hands — which is both good and bad.',
+        'article.s7.li3': 'There are <strong>few professionals</strong> interested in this area. Concentrating this knowledge in a few individuals is a risk. If you\'re going to implement it, <strong>foster knowledge sharing across the team</strong>.',
+        'article.s7.li4': 'Bazel, Buck, and similar tools <strong>may not be the solution for your product</strong>. You may be solving a problem that doesn\'t even exist. Do a study with companies and developers who already use these tools, gather pros and cons, and experiment before making a final decision.',
+      }
+    };
+
+    let currentLang = localStorage.getItem('lang') || 'en';
+
+    function applyLang(lang) {
+      const t = translations[lang];
+      document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        if (t[el.dataset.i18n] !== undefined) el.textContent = t[el.dataset.i18n];
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        if (t[el.dataset.i18nHtml] !== undefined) el.innerHTML = t[el.dataset.i18nHtml];
+      });
+      document.getElementById('langLabel').textContent = lang === 'pt' ? 'EN' : 'PT';
+      currentLang = lang;
+    }
+
+    applyLang(currentLang);
+    document.getElementById('langToggle').addEventListener('click', () => {
+      const next = currentLang === 'pt' ? 'en' : 'pt';
+      localStorage.setItem('lang', next);
+      applyLang(next);
+    });
+
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+    document.getElementById('navToggle').addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') !== 'dark') html.setAttribute('data-theme', 'light');
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      const isLight = html.getAttribute('data-theme') === 'light';
+      html.setAttribute('data-theme', isLight ? 'dark' : 'light');
+      localStorage.setItem('theme', isLight ? 'dark' : 'light');
+    });
+  </script>
+
+</body>
+</html>
