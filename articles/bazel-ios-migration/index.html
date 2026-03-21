@@ -10,16 +10,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
   <style>
     /* ===== ARTICLE PAGE STYLES ===== */
     .article-hero {
       padding: 140px 0 60px;
       border-bottom: 1px solid var(--border);
     }
-    .article-hero .container {
-      max-width: 760px;
-    }
+    .article-hero .container { max-width: 760px; }
+
     .article-back {
       display: inline-flex;
       align-items: center;
@@ -69,12 +68,8 @@
     }
 
     /* ===== ARTICLE BODY ===== */
-    .article-body {
-      padding: 72px 0 100px;
-    }
-    .article-body .container {
-      max-width: 760px;
-    }
+    .article-body { padding: 72px 0 100px; }
+    .article-body .container { max-width: 760px; }
 
     .prose p {
       color: var(--text-sec);
@@ -93,8 +88,6 @@
       padding-bottom: 12px;
       border-bottom: 1px solid var(--border);
     }
-    .prose h2:first-child { margin-top: 0; }
-
     .prose h3 {
       font-size: 1.1rem;
       font-weight: 600;
@@ -102,7 +95,7 @@
       margin: 32px 0 12px;
     }
 
-    .prose ul, .prose ol {
+    .prose ul {
       color: var(--text-sec);
       font-size: 1rem;
       line-height: 1.85;
@@ -120,18 +113,14 @@
       overflow-x: auto;
       margin: 28px 0;
     }
-    [data-theme="light"] .prose pre {
-      background: #f6f8fa;
-    }
+    [data-theme="light"] .prose pre { background: #f6f8fa; }
     .prose pre code {
       font-family: var(--mono);
       font-size: 0.82rem;
       line-height: 1.75;
       color: #a5d6ff;
     }
-    [data-theme="light"] .prose pre code {
-      color: #032f62;
-    }
+    [data-theme="light"] .prose pre code { color: #032f62; }
 
     .prose code {
       font-family: var(--mono);
@@ -149,6 +138,28 @@
       font-size: 0.82rem;
     }
 
+    /* Article images */
+    .article-img {
+      width: 100%;
+      border-radius: var(--radius);
+      margin: 32px 0;
+      border: 1px solid var(--border);
+    }
+    .article-img-caption {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-family: var(--mono);
+      margin-top: -20px;
+      margin-bottom: 32px;
+    }
+    .article-img-cover {
+      width: 100%;
+      border-radius: var(--radius-lg);
+      margin: 40px 0 0;
+      border: none;
+    }
+
     .metric-highlight {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -160,10 +171,7 @@
       font-size: 0.9rem;
       color: var(--text-sec);
     }
-    .metric-highlight strong {
-      color: var(--primary);
-      font-size: 1.1em;
-    }
+    .metric-highlight strong { color: var(--primary); font-size: 1.1em; }
 
     .callout {
       background: rgba(48, 209, 88, 0.06);
@@ -194,14 +202,14 @@
   <!-- ===== NAVIGATION ===== -->
   <nav class="nav" id="nav">
     <div class="nav-container">
-      <a href="../index.html" class="nav-logo">
+      <a href="../../index.html" class="nav-logo">
         <span class="logo-bracket">&lt;</span>codando na rede<span class="logo-bracket">/&gt;</span>
       </a>
       <div class="nav-links" id="navLinks">
-        <a href="../index.html#sobre"      data-i18n="nav.about">Sobre</a>
-        <a href="../index.html#skills">Skills</a>
-        <a href="../index.html#experiencia" data-i18n="nav.experience">Experiência</a>
-        <a href="../articles.html"          data-i18n="nav.articles" class="nav-active">Artigos</a>
+        <a href="../../index.html#sobre"       data-i18n="nav.about">Sobre</a>
+        <a href="../../index.html#skills">Skills</a>
+        <a href="../../index.html#experiencia" data-i18n="nav.experience">Experiência</a>
+        <a href="../../articles.html"          data-i18n="nav.articles" class="nav-active">Artigos</a>
         <a href="mailto:mateusdevsousa@gmail.com" class="nav-cta" data-i18n="nav.contact">Contato</a>
       </div>
       <div class="nav-right">
@@ -229,7 +237,7 @@
   <!-- ===== ARTICLE HERO ===== -->
   <section class="article-hero">
     <div class="container">
-      <a href="../articles.html" class="article-back">
+      <a href="../../articles.html" class="article-back">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
         Todos os artigos
       </a>
@@ -246,6 +254,11 @@
         </span>
         <span>Mateus Sousa</span>
       </div>
+      <img
+        src="assets/1*aitXtAmWI_sc-Nf5wzCR2g.webp"
+        alt="Migração do Xcode para o Bazel"
+        class="article-img-cover"
+      >
     </div>
   </section>
 
@@ -391,6 +404,13 @@ Error in child process '/usr/bin/xcrun'. 1</code></pre>
           poder reaproveitar em builds subsequentes.
         </p>
 
+        <img
+          src="assets/1*ViM7RLc_f0WHudVbKy5vig.webp"
+          alt="Diagrama da arquitetura do Bazel-remote Service"
+          class="article-img"
+        >
+        <p class="article-img-caption">Arquitetura do Bazel-remote Service distribuindo cache entre os builds do CI</p>
+
         <div class="metric-highlight">
           Com o cache ativo, a métrica <strong>P50 caiu para 28 minutos</strong>. Existia possibilidade
           de reduzir mais, mas limitações de infraestrutura precisariam ser trabalhadas antes de suportar
@@ -421,8 +441,15 @@ Error in child process '/usr/bin/xcrun'. 1</code></pre>
         <p>
           A vantagem dessa solução é que deixou a execução com comportamento semelhante a algoritmos
           logarítmicos: mesmo aumentando a base de código, o tempo de execução se mantém estável com
-          curva de crescimento baixíssima.
+          curva de crescimento baixíssima. Abaixo, os ganhos alcançados:
         </p>
+
+        <img
+          src="assets/1*JBIO_nAOqWY4cLcoYU5B0w.webp"
+          alt="Gráfico: 54% builds mais rápidos com Bazel — 23.7 min vs 52 min"
+          class="article-img"
+        >
+        <p class="article-img-caption">~54% de redução no tempo de build após testes seletivos com bazel-diff</p>
 
         <h2>RIP: SDKs legados</h2>
         <p>
@@ -441,11 +468,18 @@ Error in child process '/usr/bin/xcrun'. 1</code></pre>
           sem suporte existentes no projeto. Os 5% restantes não poderiam se beneficiar com ela, então foi
           montado um plano para que os times responsáveis atualizassem as mesmas.
         </p>
+        <p>
+          Após atualizar todas as bibliotecas para conter suporte para simuladores arm64 e não utilizar
+          nenhum tipo de "hack", realizei a mudança do executável para o Bazel arm64. Com essa mudança
+          tivemos ganhos incríveis:
+        </p>
 
-        <div class="metric-highlight">
-          Após atualizar todas as bibliotecas para suporte arm64 e migrar o executável Bazel para arm64,
-          a métrica de tempo de build <strong>P50 chegou a 11 minutos</strong>. 🎉
-        </div>
+        <img
+          src="assets/1*uWAKOzgBUmiDKsua9w-2pg.webp"
+          alt="Gráfico: 78% builds mais rápidos com Bazel — 11.3 min vs 52 min"
+          class="article-img"
+        >
+        <p class="article-img-caption">Resultado final: ~78% de redução — de 52 min para 11.3 min de build P50</p>
 
         <h2>Alguns aprendizados extraídos</h2>
         <p>Nem tudo com o Bazel são maravilhas. Alguns pontos de atenção:</p>
@@ -457,7 +491,7 @@ Error in child process '/usr/bin/xcrun'. 1</code></pre>
         </ul>
 
         <div class="article-footer-nav">
-          <a href="../articles.html" class="btn btn-outline">
+          <a href="../../articles.html" class="btn btn-outline">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
             Ver todos os artigos
           </a>
@@ -479,7 +513,7 @@ Error in child process '/usr/bin/xcrun'. 1</code></pre>
   <footer class="footer">
     <div class="container">
       <div class="footer-content">
-        <a href="../index.html" class="footer-logo">
+        <a href="../../index.html" class="footer-logo">
           <span class="logo-bracket">&lt;</span>codando na rede<span class="logo-bracket">/&gt;</span>
         </a>
         <p class="footer-tagline" data-i18n="footer.tagline">Compartilhando conhecimento, um commit de cada vez.</p>
