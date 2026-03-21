@@ -983,6 +983,11 @@ body {
   color: var(--orange);
   border: 1px solid rgba(255, 159, 10, 0.25);
 }
+.article-badge.published {
+  background: rgba(48, 209, 88, 0.1);
+  color: var(--green);
+  border: 1px solid rgba(48, 209, 88, 0.25);
+}
 
 /* ===== ARTICLE PAGE ===== */
 .article-hero {
